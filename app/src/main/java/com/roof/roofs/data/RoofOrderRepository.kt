@@ -2,16 +2,16 @@ package com.roof.roofs.data
 
 import android.content.Context
 import com.roof.roofs.database.entity.RoofOrderEntity
-import com.roof.roofs.database.sqlite.RoofOrderDB
+import com.roof.roofs.database.sqlite.DataBase
 import com.roof.roofs.domain.RoofOrder
 
 object RoofOrderRepository {
     private val listenerList = ArrayList<UpdateListener>()
     private val orderList = ArrayList<RoofOrder>()
-    private lateinit var db: RoofOrderDB
+    private lateinit var db: DataBase
 
     fun init(context: Context) {
-        db = RoofOrderDB(context)
+        db = DataBase(context)
 
         db.getRoofOrders().forEach {
             orderList.add(it.toDomain())
@@ -38,6 +38,10 @@ object RoofOrderRepository {
 
     fun removeListener(listener: UpdateListener) {
         listenerList.remove(listener)
+    }
+
+    fun getPassword(login: String): String? {
+        return db.getPassword(login)
     }
 
     interface UpdateListener {

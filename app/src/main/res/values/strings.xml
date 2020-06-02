@@ -9,7 +9,7 @@
     <string name="add">add</string>
     <string name="clear">clear</string>
     <string name="empty_field">empty field</string>
-    <string name="title_activity_login">Login</string>
+    <string name="title_activity_login">Roofs</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>

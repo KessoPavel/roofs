@@ -5,9 +5,9 @@ import android.content.Context
 import android.provider.BaseColumns
 import com.roof.roofs.database.entity.RoofOrderEntity
 
-class RoofOrderDB(context: Context) {
-    private val writableDb = RoofOrderDbHelper(context).writableDatabase
-    private val readableDb = RoofOrderDbHelper(context).readableDatabase
+class DataBase(context: Context) {
+    private val writableDb = DataBaseHelper(context).writableDatabase
+    private val readableDb = DataBaseHelper(context).readableDatabase
 
     fun getRoofOrders(): List<RoofOrderEntity> {
         val projection = arrayOf(
@@ -50,5 +50,17 @@ class RoofOrderDB(context: Context) {
         }
 
         return writableDb?.replace(RoofOrderContract.TABLE_NAME, null, values) == -1L
+    }
+
+    fun getPassword(login: String): String? {
+        val cursor = readableDb.rawQuery("SELECT ${UserContract.COLUMN_PASSWORD} FROM ${UserContract.TABLE_NAME} WHERE ${UserContract.COLUMN_LOGIN} = ?;", arrayOf(login))
+        with(cursor) {
+            while (moveToNext()) {
+                val pass = getString(getColumnIndexOrThrow(UserContract.COLUMN_PASSWORD))
+                return pass
+            }
+        }
+
+        return null
     }
 }
