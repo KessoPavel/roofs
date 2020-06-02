@@ -5,7 +5,7 @@ import com.roof.roofs.database.entity.RoofOrderEntity
 import com.roof.roofs.database.sqlite.DataBase
 import com.roof.roofs.domain.RoofOrder
 
-object RoofOrderRepository {
+object Repository {
     private val listenerList = ArrayList<UpdateListener>()
     private val orderList = ArrayList<RoofOrder>()
     private lateinit var db: DataBase

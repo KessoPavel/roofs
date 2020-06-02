@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.roof.roofs.MainActivity
 import com.roof.roofs.R
-import com.roof.roofs.data.RoofOrderRepository
+import com.roof.roofs.data.Repository
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -16,7 +16,7 @@ class LoginActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             val userLogin = login.text.toString()
-            val pass = RoofOrderRepository.getPassword(userLogin)
+            val pass = Repository.getPassword(userLogin)
             if (pass == password.text.toString()) {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
